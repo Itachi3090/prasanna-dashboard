@@ -1,12 +1,14 @@
-# Prassanna Publication – Online Exam Platform (React + Vite, JSX)
-    npm install && npm run dev      # login: STU001 / demo123
+# Prasanna Publication – Examination Management Dashboard
 
-## Architecture
-- `src/data/sampleExam.js` – the exam JSON contract the Admin Dashboard should produce: `sections`, `groups` (shared passage/table/diagram, stored once), `questions` (`stem` + `options` made of typed **blocks**).
-- `src/components/Blocks.jsx` – block registry (`text`, `math` via KaTeX, `image` with zoom, `table`). New content type = one registry entry. Options are blocks too, so image options just work.
-- `src/components/Exam.jsx` – one generic screen: shared group + current question, palette, section tabs, timer from persisted `startedAt` (refresh-safe), auto-save, submit modal.
-- `src/lib/api.js` – localStorage mock. Replace with REST calls to the shared DB.
+React (JSX) + Vite. Tabs: Exam, Questions, Students, Results.
 
-## Before production (not implemented here)
-Server-side timer/time offset, server-side grading (never ship `correct` to the client), real auth/OTP, offline save queue, Admin Dashboard question/passage/table editors, PDF export beyond browser print, role-based access, exam-window enforcement.
-Login: STU001 / demo123 (or mobile 9999999999). Registration and reset are demo-only (in memory).
+## Run
+    npm install
+    npm run dev        # http://localhost:5173
+    npm run build      # production build in dist/
+
+## Notes
+- Data is saved in browser localStorage (key `pp_v1`). To use a real backend, replace `load()` and `upd()` in `src/PrasannaDashboard.jsx`.
+- Login (demo): admin@prasanna.in / Admin@123. Credentials are checked in the browser only, so replace `DEMO` and the submit handler in `Login` with a real API before going live.
+- Logo: put your logo in `public/logo.png` and in the sidebar replace the "PP" box with `<img src="/logo.png" alt="Prasanna Publication" />`.
+- Bulk upload accepts CSV (Excel: Save As CSV).
